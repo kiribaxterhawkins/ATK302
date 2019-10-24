@@ -3,18 +3,23 @@ var frogPos;
 var myState = 0;
 var timer = 0;
 var resetTheGame;
+var monky, monkyRight, monkyLeft;
+var bird;
 
 function setup() {
   createCanvas(800, 700);
-  rectMode(CENTER); //or imagemode(CENTER);
   for (var i = 0; i < 5; i++) { //how spawn
     cars.push(new Car());
   }
   frogPos = createVector(width / 2, height - 10);
+  monkyRight = loadImage("assets/Monkyright.png");
+  monkyLeft = loadImage("assets/Monkyleft.png");
+  monky = monkyRight;
+  bird = loadImage("assets/bat1.png");
+
+  rectMode(CENTER); //or imagemode(CENTER);
+  imageMode(CENTER);
 }
-
-
-
 //list of ideas
 //how to make object orient in direction of dkeys
 //die when you run into certain objects
@@ -75,13 +80,7 @@ function Car() {
 
   //methods
   this.display = function() {
-    noStroke();
-    fill(this.r, this.g, this.b);
-    rect(this.pos.x, this.pos.y, 80, 45);
-    fill(this.b, this.g, this.r);
-    ellipse(this.pos.x - 15, this.pos.y + 25, 20, 20);
-    fill(this.b, this.g, this.r);
-    ellipse(this.pos.x + 15, this.pos.y + 25, 20, 20);
+    image(bird, this.pos.x, this.pos.y, 150,150);
   }
   this.drive = function() {
     this.pos.add(this.vel);
@@ -92,8 +91,17 @@ function Car() {
   }
 }
 
+function keyPressed(){
+  if (keyCode === LEFT_ARROW){
+    monky= monkyLeft;
+  }
+  if (keyCode === RIGHT_ARROW){
+    monky= monkyRight;
+  }
+}
+
 function checkForKeys() {
-  if (keyIsDown(LEFT_ARROW)) frogPos.x = frogPos.x - 5;
+  if (keyIsDown(LEFT_ARROW))  frogPos.x = frogPos.x - 5;
   if (keyIsDown(RIGHT_ARROW)) frogPos.x = frogPos.x + 5;
   if (keyIsDown(UP_ARROW)) frogPos.y = frogPos.y - 5;
   if (keyIsDown(DOWN_ARROW)) frogPos.y = frogPos.y + 5;
@@ -118,6 +126,8 @@ function game() {
   fill(47, 224, 94);
   ellipse(frogPos.x, frogPos.y, 50, 50);
   checkForKeys(); //this moves the frog
+
+  image(monky, frogPos.x, frogPos.y, 150,150);
 }
 
 function mouseReleased() {

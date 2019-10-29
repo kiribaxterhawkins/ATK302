@@ -1,5 +1,5 @@
 var cars=[];
-var frogPos;
+var bunnyPos;
 
 /* For mobile phones - accesses accelerometer.
 Make sure you turn on orientation lock on your iPhone or Android device. */
@@ -18,7 +18,7 @@ function setup() {
   for(var i=0; i<40; i++){
     cars.push(new Car());
   }
-  frogPos = createVector(width/2, height-10);
+  bunnyPos = createVector(width/2, height-10);
 
 
   // initialize accelerometer variables
@@ -37,7 +37,7 @@ function draw() {
     cars[i].drive();
     cars[i].display();
     //collision detection
-    if(cars[i].pos.dist(frogPos)<50){
+    if(cars[i].pos.dist(bunnyPos)<50){
         cars.splice(i,1);
     }
   }
@@ -57,7 +57,7 @@ function draw() {
   rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
 
   //frog
-  image(bunnyImage, frogPos.x, frogPos.y, 50, 50);
+  image(bunnyImage, bunnyPos.x, bunnyPos.y, 50, 50);
   checkForKeys(); //this moves the frog
 
   pop();
@@ -107,10 +107,10 @@ function Car(){
 }
 
 function checkForKeys(){
-  if(keyIsDown(LEFT_ARROW)) frogPos.x= frogPos.x -5;
-  if(keyIsDown(RIGHT_ARROW)) frogPos.x= frogPos.x +5;
-  if(keyIsDown(UP_ARROW)) frogPos.y= frogPos.y -5;
-  if(keyIsDown(DOWN_ARROW)) frogPos.y= frogPos.y +5;
+  if(keyIsDown(LEFT_ARROW)) bunnyPos.x= bunnyPos.x -5;
+  if(keyIsDown(RIGHT_ARROW)) bunnyPos.x= bunnyPos.x +5;
+  if(keyIsDown(UP_ARROW)) bunnyPos.y= bunnyPos.y -5;
+  if(keyIsDown(DOWN_ARROW)) bunnyPos.y= bunnyPos.y +5;
 }
 
 

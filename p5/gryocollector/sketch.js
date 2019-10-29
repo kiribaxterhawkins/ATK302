@@ -1,9 +1,5 @@
 var cars = [];
 var bunnyPos;
-
-/* For mobile phones - accesses accelerometer.
-Make sure you turn on orientation lock on your iPhone or Android device. */
-
 var alpha, beta, gamma; // orientation data
 var bunnyImage;
 var xPosition = 0;
@@ -35,6 +31,15 @@ function draw() {
   background('#c6f5ff'); // light blue
   bunnyPos.x = xPosition;
   bunnyPos.y = yPosition;
+
+  image(bunnyImage, bunnyPos.x, bunnyPos.y, 50,50);
+  checkForKeys();
+
+  push(); // before you use translate, rotate, or scale commands, push and then pop after
+  translate(xPosition, yPosition); // move everything over by x,
+  rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
+  pop();
+
   for (var i = 0; i < cars.length; i++) {
     cars[i].drive();
     cars[i].display();
@@ -50,41 +55,6 @@ function draw() {
   // map(yourVar, range1_x, range1_y, range2_x, range2_y) ;
   xPosition = map(gamma, -60, 60, 0, width);
   yPosition = map(beta, -30, 30, 0, height);
-
-
-  push(); // before you use translate, rotate, or scale commands, push and then pop after
-
-  translate(xPosition, yPosition); // move everything over by x, y
-
-  rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
-
-  //bunny
-  image(bunnyImage, bunnyPos.x, bunnyPos.y, 50, 50);
-  checkForKeys(); //this moves the bunny
-
-  pop();
-
-
-
-  // Read in accelerometer data
-  window.addEventListener('deviceorientation', function(e) {
-    alpha = e.alpha;
-    beta = e.beta;
-    gamma = e.gamma;
-  });
-
-
-  // accelerometer Data
-  window.addEventListener('devicemotion', function(e) {
-    // get accelerometer values
-    x = e.acceleration.x;
-    y = e.acceleration.y;
-    z = e.acceleration.z;
-  });
-
-
-
-
 
   // DECORATIONS
 // Just a bunch of text commands to display data coming in from addEventListeners
@@ -112,24 +82,6 @@ text("atk", width / 2, height / 2);
 
 }
 
-// HERE'S THE STUFF YOU NEED FOR READING IN DATA!!!
-
-// Read in accelerometer data
-window.addEventListener('deviceorientation', function(e) {
-alpha = e.alpha;
-beta = e.beta;
-gamma = e.gamma;
-});
-
-
-// accelerometer Data
-window.addEventListener('devicemotion', function(e) {
-// get accelerometer values
-x = e.acceleration.x;
-y = e.acceleration.y;
-z = e.acceleration.z;
-});
-
 
 function Car() {
   //attributes
@@ -156,55 +108,20 @@ function Car() {
 }
 
 
-
-
-
-
-
-
-//function draw() {
-
-/*  // DECORATIONS
-  // Just a bunch of text commands to display data coming in from addEventListeners
-  textAlign(LEFT);
-  textSize(20);
-  fill('black');
-  text("orientation data:", 25, 25);
-  textSize(15);
-  text("alpha: " + alpha, 25, 50);
-  text("beta: " + beta, 25, 70);
-  text("gamma: " + gamma, 25, 90);
-  textSize(20);
-  text("acceleration data:", 25, 125);
-  textSize(15);
-  text("x = " + x.toFixed(2), 25, 150); // .toFixed means just show (x) decimal places
-  text("y = " + y.toFixed(2), 25, 170);
-  text("z = " + z.toFixed(4), 25, 190);
-
-  // MORE DECORATIONS - write that pretty ATK type on top.
-  fill('white');
-  noStroke();
-  textSize(300);
-  textAlign(CENTER);
-  text("atk", width / 2, height / 2);
-
-}
-
 // HERE'S THE STUFF YOU NEED FOR READING IN DATA!!!
-/*
+
 // Read in accelerometer data
 window.addEventListener('deviceorientation', function(e) {
-  alpha = e.alpha;
-  beta = e.beta;
-  gamma = e.gamma;
+alpha = e.alpha;
+beta = e.beta;
+gamma = e.gamma;
 });
 
 
 // accelerometer Data
 window.addEventListener('devicemotion', function(e) {
-  // get accelerometer values
-  x = e.acceleration.x;
-  y = e.acceleration.y;
-  z = e.acceleration.z;
+// get accelerometer values
+x = e.acceleration.x;
+y = e.acceleration.y;
+z = e.acceleration.z;
 });
-*/

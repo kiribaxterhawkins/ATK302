@@ -1,4 +1,4 @@
-var cars=[];
+var cars = [];
 var bunnyPos;
 
 /* For mobile phones - accesses accelerometer.
@@ -15,10 +15,10 @@ var z = 0;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CENTER); //or imagemode(CENTER);
-  for(var i=0; i<40; i++){
+  for (var i = 0; i < 40; i++) {
     cars.push(new Car());
   }
-  bunnyPos = createVector(width/2, height-10);
+  bunnyPos = createVector(width / 2, height - 10);
 
 
   // initialize accelerometer variables
@@ -33,12 +33,12 @@ function setup() {
 
 function draw() {
   background('#c6f5ff'); // light blue
-  for(var i=0; i<cars.length; i++){
+  for (var i = 0; i < cars.length; i++) {
     cars[i].drive();
     cars[i].display();
     //collision detection
-    if(cars[i].pos.dist(bunnyPos)<50){
-        cars.splice(i,1);
+    if (cars[i].pos.dist(bunnyPos) < 50) {
+      cars.splice(i, 1);
     }
   }
 
@@ -56,9 +56,9 @@ function draw() {
 
   rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
 
-  //frog
+  //bunny
   image(bunnyImage, bunnyPos.x, bunnyPos.y, 50, 50);
-  checkForKeys(); //this moves the frog
+  checkForKeys(); //this moves the bunny
 
   pop();
 
@@ -82,35 +82,35 @@ function draw() {
 
 }
 
-function Car(){
+function Car() {
   //attributes
-    this.r=random(255);
-    this.g=random(255);
-    this.b=random(255);
-    this.pos= createVector(random(width), random(width));
-    this.vel= createVector(random(-5,5), random(-5,5));
+  this.r = random(255);
+  this.g = random(255);
+  this.b = random(255);
+  this.pos = createVector(random(width), random(width));
+  this.vel = createVector(random(-5, 5), random(-5, 5));
   //methods
-    this.display=function(){
-      noStroke();
-      fill(this.r,this.g,this.b);
-      rect(this.pos.x, this.pos.y, 80, 45);
-      ellipse(this.pos.x-15, this.pos.y+30, 20,20);
-      ellipse(this.pos.x+15, this.pos.y+30, 20,20);
-    }//
-    this.drive=function(){
-      this.pos.add(this.vel);
-      if (this.pos.x>width) this.pos.x=0;
-      if (this.pos.x<0) this.pos.x=width;
-      if (this.pos.y>height) this.pos.y=0;
-      if (this.pos.y<0) this.pos.y=height;
-    }
+  this.display = function() {
+    noStroke();
+    fill(this.r, this.g, this.b);
+    rect(this.pos.x, this.pos.y, 80, 45);
+    ellipse(this.pos.x - 15, this.pos.y + 30, 20, 20);
+    ellipse(this.pos.x + 15, this.pos.y + 30, 20, 20);
+  } //
+  this.drive = function() {
+    this.pos.add(this.vel);
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
 }
 
-function checkForKeys(){
-  if(keyIsDown(LEFT_ARROW)) bunnyPos.x= bunnyPos.x -5;
-  if(keyIsDown(RIGHT_ARROW)) bunnyPos.x= bunnyPos.x +5;
-  if(keyIsDown(UP_ARROW)) bunnyPos.y= bunnyPos.y -5;
-  if(keyIsDown(DOWN_ARROW)) bunnyPos.y= bunnyPos.y +5;
+/*function checkForKeys() {
+  if (keyIsDown(LEFT_ARROW)) bunnyPos.x = bunnyPos.x - 5;
+  if (keyIsDown(RIGHT_ARROW)) bunnyPos.x = bunnyPos.x + 5;
+  if (keyIsDown(UP_ARROW)) bunnyPos.y = bunnyPos.y - 5;
+  if (keyIsDown(DOWN_ARROW)) bunnyPos.y = bunnyPos.y + 5;
 }
 
 

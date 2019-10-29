@@ -33,7 +33,7 @@ function draw() {
   bunnyPos.y = yPosition;
 
   image(bunnyImage, bunnyPos.x, bunnyPos.y, 50,50);
-  checkForKeys();
+  //checkForKeys();
 
   push(); // before you use translate, rotate, or scale commands, push and then pop after
   translate(xPosition, yPosition); // move everything over by x,

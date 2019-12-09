@@ -10,11 +10,11 @@ var font;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   imageMode(CENTER);
-  bart = loadImage("assets/barttitle.jpg");
-  bart1 = loadImage("assets/bart.jpg");
-  bart2 = loadImage("assets/bartthesequel.jpg");
-  bart3 = loadImage("assets/bartsgettingworse.jpg");
-  bart4 = loadImage("assets/bartbutinhell.jpg");
+  bart = loadImage("assets/barttitle.JPG");
+  bart1 = loadImage("assets/bart.JPG");
+  bart2 = loadImage("assets/bartthesequel.JPG");
+  bart3 = loadImage("assets/bartsgettingworse.JPG");
+  bart4 = loadImage("assets/bartbutinhell.JPG");
   font = loadFont('assets/fontowo.ttf');
 }
 

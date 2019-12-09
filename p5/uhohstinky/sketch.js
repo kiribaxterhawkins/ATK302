@@ -22,12 +22,12 @@ function draw() {
 background(100);
   switch(myState){
     case 0:
+      textFont(font);
+      text("press mouse to advance :)", 800, 670);
       image(bart, windowWidth/2, windowHeight/2);
       if (mouseIsPressed) {
         myState = 1;
       }
-      textFont(font);
-      text("press mouse to advance :)", 800, 670);
     break;
 
     case 1:

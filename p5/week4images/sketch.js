@@ -2,14 +2,14 @@ var font
 
 function setup() {
   createCanvas(800,800);
-  font = loadFont("assets/Great-Fighter-Demo.ttf");
+  font = loadFont("assets/Playbook-Fill.otf");
 
 }
 
 function draw() {
-  background(255);
-  textFont(font, 50);
-  text('woah whats good', 50, 50);
+  background(0);
+  //textFont(font, 100);
+  text('woah whats good', 50, 50,100);
   fill('red');
 
   textSize(20);
